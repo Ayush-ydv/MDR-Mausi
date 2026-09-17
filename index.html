@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MDR Mausi wants her cut | Bachat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Baloo+2:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F3DCC8; --bg2:#FBEBDD; --card:#FFF8F0; --ink:#2B1B17; --muted:#6B5249;
+  --saree:#C8283B; --haldi:#F2B632; --mint:#8FD6B5; --sky:#9CC9F0; --pink:#F4A6A0;
+  --shadow:4px 4px 0 var(--ink);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#2A1E1B; --bg2:#342622; --card:#3E2E29; --ink:#FBEBDD; --muted:#CDB6AA;
+    --saree:#EF5566; --haldi:#F5C04C; --mint:#6CC79E; --sky:#78B2E6; --pink:#E0877F;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#2A1E1B; --bg2:#342622; --card:#3E2E29; --ink:#FBEBDD; --muted:#CDB6AA;
+  --saree:#EF5566; --haldi:#F5C04C; --mint:#6CC79E; --sky:#78B2E6; --pink:#E0877F;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:18px/1.5 "Baloo 2",system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:hidden;
+  background-image:radial-gradient(color-mix(in srgb,var(--ink) 12%,transparent) 1.5px,transparent 1.6px);background-size:22px 22px}
+h1,h2,h3{font-family:"Bagel Fat One","Baloo 2",system-ui,sans-serif;font-weight:400;line-height:1.02;margin:0}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:4px solid var(--haldi);outline-offset:3px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+
+.btn{background:var(--haldi);color:#2B1B17;border:3px solid var(--ink);border-radius:14px;padding:8px 16px;font-weight:800;cursor:pointer;box-shadow:var(--shadow);transition:transform .08s,box-shadow .08s}
+.btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--ink)}
+.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+.btn.red{background:var(--saree);color:#fff}
+.btn.mint{background:var(--mint)}
+.btn.sky{background:var(--sky)}
+.btn.plain{background:var(--card);color:var(--ink)}
+
+/* nav */
+.top{display:flex;justify-content:space-between;align-items:center;padding:16px 0}
+.logo{font-family:"Bagel Fat One",sans-serif;font-size:1.7rem;display:flex;align-items:center;gap:8px}
+.logo i{display:inline-grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--haldi);border:3px solid var(--ink);font-style:normal;color:#2B1B17;font-size:1.1rem;transform:rotate(-12deg)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1fr 1.05fr;gap:10px;align-items:center;padding:10px 0 0}
+.hero h1{font-size:clamp(3rem,7.5vw,5.6rem);letter-spacing:-.01em}
+.hero h1 .l2{display:block;color:var(--saree);-webkit-text-stroke:2px var(--ink);text-shadow:4px 4px 0 var(--ink)}
+.hero p{font-size:1.15rem;max-width:34ch;margin:14px 0 20px;color:var(--muted);font-weight:600}
+.stageWrap{position:relative;height:min(620px,72vh);min-height:420px}
+.stage{position:absolute;inset:0;cursor:pointer}
+.stage canvas{display:block;width:100%!important;height:100%!important}
+.halo{position:absolute;left:50%;top:48%;width:78%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:var(--haldi);border:4px solid var(--ink);opacity:.9}
+.halo::after{content:"";position:absolute;inset:18px;border-radius:50%;border:4px dashed var(--ink);opacity:.35;animation:spin 30s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.bubble{position:absolute;left:0;top:6%;max-width:230px;background:var(--card);border:3px solid var(--ink);border-radius:22px;padding:10px 14px;font-weight:800;box-shadow:var(--shadow);z-index:3;animation:pop .35s cubic-bezier(.3,1.6,.5,1)}
+.bubble::after{content:"";position:absolute;right:-18px;top:34px;border:10px solid transparent;border-left:16px solid var(--ink)}
+@keyframes pop{from{transform:scale(.4) rotate(-8deg);opacity:0}}
+.hint{position:absolute;right:4px;bottom:8px;font-size:.85rem;font-weight:700;background:var(--card);border:2px solid var(--ink);border-radius:10px;padding:2px 10px;z-index:3}
+.nogl{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font-weight:700;padding:30px}
+
+/* scoreboard */
+.score{display:flex;gap:14px;flex-wrap:wrap;margin:6px 0 18px}
+.chip{background:var(--card);border:3px solid var(--ink);border-radius:16px;padding:6px 14px;box-shadow:var(--shadow);min-width:150px}
+.chip b{display:block;font-family:"Bagel Fat One",sans-serif;font-weight:400;font-size:1.6rem;line-height:1.1}
+.chip.fee b{color:var(--saree)}
+.chip.save b{color:#1f8a57}
+:root[data-theme="dark"] .chip.save b{color:var(--mint)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .chip.save b{color:var(--mint)}}
+.chip span{font-size:.85rem;font-weight:700;color:var(--muted)}
+
+/* street */
+.street{position:relative;margin-top:-10px;background:var(--bg2);border:4px solid var(--ink);border-radius:28px;padding:22px 18px 18px;box-shadow:6px 6px 0 var(--ink)}
+.street h2{font-size:1.8rem;margin-bottom:4px}
+.street .sub{margin:0 0 14px;color:var(--muted);font-weight:600}
+.shops{display:grid;grid-template-columns:repeat(3,1fr) .8fr;gap:16px;align-items:end}
+.shop{background:var(--card);border:3px solid var(--ink);border-radius:20px;padding:12px;text-align:center;box-shadow:var(--shadow)}
+.shop:nth-child(1){transform:rotate(-1.5deg)}
+.shop:nth-child(3){transform:rotate(1.2deg)}
+.shop svg{width:120px;height:130px;display:block;margin:0 auto}
+.shop.bounce svg{animation:hop .45s}
+@keyframes hop{40%{transform:translateY(-14px) rotate(-4deg)}}
+.shop h3{font-size:1.2rem;margin-top:4px}
+.amt{font-weight:800;font-size:1.05rem}
+.shop .btns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+.shop .btn{padding:5px 10px;font-size:.92rem}
+.vault{text-align:center}
+.vault svg{width:130px;height:150px}
+.vault.glow svg{animation:hop .45s}
+.vault b{display:block;font-weight:800}
+
+/* coins */
+.coin{position:fixed;left:0;top:0;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;background:var(--haldi);border:3px solid #2B1B17;display:grid;place-items:center;font-weight:800;color:#2B1B17;z-index:50;pointer-events:none;box-shadow:inset -4px -4px 0 rgba(0,0,0,.18)}
+.coin.note{width:64px;height:34px;margin:-17px 0 0 -32px;border-radius:6px;background:var(--mint);font-size:.8rem}
+
+/* sections */
+section.block{padding:70px 0 10px}
+.kicker{display:inline-block;background:var(--sky);border:3px solid var(--ink);border-radius:999px;padding:2px 14px;font-weight:800;transform:rotate(-2deg);margin-bottom:10px}
+.block h2{font-size:clamp(2.1rem,5vw,3.3rem);max-width:18ch}
+.block .lede{max-width:56ch;color:var(--muted);font-weight:600;margin:10px 0 24px}
+
+/* calculator */
+.calc{display:grid;grid-template-columns:1.2fr .8fr;gap:22px;background:var(--card);border:4px solid var(--ink);border-radius:28px;padding:24px;box-shadow:6px 6px 0 var(--ink)}
+.bigamt{font-family:"Bagel Fat One",sans-serif;font-size:clamp(2.4rem,6vw,3.6rem);line-height:1}
+input[type=range]{width:100%;accent-color:var(--saree);height:32px;margin:14px 0 4px}
+.numin{width:170px;border:3px solid var(--ink);border-radius:12px;padding:6px 10px;background:var(--bg2);font-weight:800}
+.presets{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.presets .btn{padding:3px 10px;font-size:.9rem;box-shadow:2px 2px 0 var(--ink)}
+.receipt{margin-top:18px;border-top:3px dashed var(--ink);padding-top:12px;display:grid;grid-template-columns:1fr auto;gap:4px 16px;font-weight:700}
+.receipt .t{font-size:1.25rem;border-top:3px solid var(--ink);padding-top:6px}
+.reaction{text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.reaction svg{width:190px;height:190px}
+.reaction .say{background:var(--bg2);border:3px solid var(--ink);border-radius:18px;padding:8px 12px;font-weight:800;margin-top:6px;min-height:3.2em}
+
+/* trick */
+.trick{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:center}
+.panel{background:var(--card);border:4px solid var(--ink);border-radius:28px;padding:22px;box-shadow:6px 6px 0 var(--ink);position:relative;overflow:hidden}
+.panel.alarm{animation:shake .5s 2;background:color-mix(in srgb,var(--saree) 18%,var(--card))}
+@keyframes shake{25%{transform:translateX(-8px) rotate(-1deg)}75%{transform:translateX(8px) rotate(1deg)}}
+.slips{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+.slip{border:3px solid var(--ink);border-radius:10px;background:var(--mint);padding:4px 10px;font-weight:800;animation:pop .3s both}
+.siren{position:absolute;right:16px;top:14px;width:48px;height:48px;border-radius:50% 50% 8px 8px;border:3px solid var(--ink);background:#888}
+.alarm .siren{animation:flash .3s steps(2) infinite}
+@keyframes flash{0%{background:var(--saree)}100%{background:var(--sky)}}
+.verdict{border:3px solid var(--ink);border-radius:16px;padding:10px 14px;font-weight:700;margin-top:10px;background:var(--bg2)}
+
+/* comics */
+.comics{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.comic{background:var(--card);border:4px solid var(--ink);border-radius:8px;padding:0;box-shadow:6px 6px 0 var(--ink);overflow:hidden}
+.comic .art{height:150px;border-bottom:4px solid var(--ink);display:grid;place-items:center}
+.comic:nth-child(1) .art{background:var(--pink)}
+.comic:nth-child(2) .art{background:var(--mint)}
+.comic:nth-child(3) .art{background:var(--sky)}
+.comic .art svg{height:120px}
+.comic .txt{padding:14px 16px 18px}
+.comic h3{font-size:1.35rem;margin-bottom:6px}
+.comic p{margin:0;color:var(--muted);font-weight:600}
+.comic .num{display:inline-block;background:var(--haldi);color:#2B1B17;border:3px solid var(--ink);border-radius:50%;width:34px;height:34px;text-align:center;line-height:28px;font-weight:800;margin-bottom:6px}
+
+/* cta */
+.cta{margin:70px 0 30px;background:var(--saree);color:#fff;border:4px solid var(--ink);border-radius:32px;padding:34px 26px;box-shadow:8px 8px 0 var(--ink);text-align:center}
+.cta h2{font-size:clamp(2rem,5vw,3.2rem);-webkit-text-stroke:1px #2B1B17;margin:0 auto;max-width:18ch}
+.cta p{font-weight:600;margin:10px auto 18px;max-width:46ch}
+.cta form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.cta input{border:3px solid #2B1B17;border-radius:14px;padding:8px 14px;min-width:240px;background:#FFF8F0;color:#2B1B17;font-weight:700}
+.thanks{font-family:"Bagel Fat One",sans-serif;font-size:1.6rem}
+footer{padding:10px 0 40px;color:var(--muted);font-size:.9rem;font-weight:600}
+footer p{max-width:80ch}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .stageWrap{height:460px;min-height:0}
+  .shops{grid-template-columns:1fr 1fr}
+  .calc,.trick{grid-template-columns:1fr}
+  .comics{grid-template-columns:1fr}
+  .bubble{max-width:180px;font-size:.95rem}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+"use strict";
+if (!window.React || !window.ReactDOM){
+  document.getElementById("root").innerHTML = '<p style="padding:40px;font-weight:700">The page scripts did not load. Check your connection and reload.</p>';
+  return;
+}
+var h = React.createElement;
+var useState = React.useState, useEffect = React.useEffect, useRef = React.useRef;
+var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function inr(n){ return "₹" + (Math.round(n*100)/100).toLocaleString("en-IN",{maximumFractionDigits:2}); }
+function feeOf(a){ return a > 2000 ? Math.min(a*0.004, 300) : 0; }
+function moodFor(a){ if (a <= 2000) return "pout"; if (a >= 75000) return "shocked"; return "greedy"; }
+function lineFor(a){
+  if (a <= 2000) return "Only " + inr(a) + "? Nothing for Mausi. Hmph.";
+  if (a >= 75000) return "What?! Capped at ₹300? Who made this rule!";
+  return "Ahh, " + inr(a) + "! My 0.4% is " + inr(feeOf(a)) + ", beta.";
+}
+
+/* ================= 3D MAUSI ================= */
+var EXPR = {
+  smug:    { lid: 0.02, eye:1.0,  brow:[ 0.12,-0.12], browY:0.00, mouth:"smile", pupil:0x3a2418 },
+  greedy:  { lid:-0.55, eye:1.05, brow:[-0.28, 0.28], browY:0.02, mouth:"grin",  pupil:0xE0A10E },
+  shocked: { lid:-1.45, eye:1.22, brow:[ 0.18,-0.18], browY:0.16, mouth:"open",  pupil:0x3a2418 },
+  pout:    { lid:-0.35, eye:1.0,  brow:[ 0.05,-0.40], browY:0.05, mouth:"pout",  pupil:0x3a2418 },
+  sly:     { lid: 0.25, eye:1.0,  brow:[-0.30, 0.05], browY:0.00, mouth:"smirk", pupil:0x3a2418 },
+  worried: { lid:-1.25, eye:1.2,  brow:[ 0.38,-0.38], browY:0.10, mouth:"frown", pupil:0x3a2418 }
+};
+var EXPR_ORDER = ["smug","greedy","shocked","pout","sly","worried"];
+
+function MausiScene(props){
+  var mount = useRef(null);
+  var api = useRef({});
+  var _s = useState(false), failed = _s[0], setFailed = _s[1];
+
+  useEffect(function(){
+    var el = mount.current;
+    if (!window.THREE){ setFailed(true); return; }
+    var renderer;
+    try { renderer = new THREE.WebGLRenderer({antialias:true, alpha:true}); }
+    catch(e){ setFailed(true); return; }
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio||1, 2));
+    el.appendChild(renderer.domElement);
+
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(33, 1, 0.1, 100);
+    camera.position.set(0, 0.1, 10.2);
+    camera.lookAt(0, -0.55, 0);
+    scene.add(new THREE.HemisphereLight(0xfff4e6, 0x6b4a3a, 0.75));
+    var sun = new THREE.DirectionalLight(0xffffff, 0.75);
+    sun.position.set(3, 5, 6); scene.add(sun);
+
+    var gd = new Uint8Array([95, 175, 255]);
+    var grad = new THREE.DataTexture(gd, 3, 1, THREE.LuminanceFormat);
+    grad.minFilter = THREE.NearestFilter; grad.magFilter = THREE.NearestFilter; grad.needsUpdate = true;
+    function toon(c){ return new THREE.MeshToonMaterial({color:c, gradientMap:grad}); }
+    function flat(c){ return new THREE.MeshBasicMaterial({color:c}); }
+    var ink = new THREE.MeshBasicMaterial({color:0x2B1B17, side:THREE.BackSide});
+    var disposables = [];
+    function add(geo, mat, parent, pos, scl, outline){
+      disposables.push(geo);
+      var m = new THREE.Mesh(geo, mat);
+      if (pos) m.position.set(pos[0],pos[1],pos[2]);
+      if (scl) m.scale.set(scl[0],scl[1],scl[2]);
+      parent.add(m);
+      if (outline){ var o = new THREE.Mesh(geo, ink); o.scale.setScalar(outline); m.add(o); }
+      return m;
+    }
+
+    var SKIN = 0xB8693F, SKIN_D = 0xA25A35, HAIR = 0xDAD6CF, SAREE = 0xC8283B, GOLD = 0xF2B632;
+    var skin = toon(SKIN), skinD = toon(SKIN_D), hair = toon(HAIR), saree = toon(SAREE), gold = toon(GOLD);
+    var white = flat(0xffffff), dark = flat(0x4A1519), lip = toon(0x8E3434), tongue = flat(0xE0707A);
+    var pupilMat = flat(0x3a2418);
+    var cheekMat = new THREE.MeshBasicMaterial({color:0xF08A7E, transparent:true, opacity:0.55});
+
+    var root = new THREE.Group(); root.position.y = 0.45; scene.add(root);
+
+    // body
+    var body = new THREE.Group(); body.position.y = -2.55; root.add(body);
+    add(new THREE.CylinderGeometry(0.72, 1.8, 2.5, 40), saree, body, [0,0,0], null, 1.03);
+    var pallu = add(new THREE.BoxGeometry(0.62, 2.9, 0.12), toon(0x9E1B2C), body, [0.18, 0.05, 1.1]);
+    pallu.rotation.set(-0.38, 0, -0.55);
+    var border1 = add(new THREE.BoxGeometry(0.1, 2.9, 0.14), gold, pallu, [0.3, 0, 0.01]);
+    var border2 = add(new THREE.BoxGeometry(0.1, 2.9, 0.14), gold, pallu, [-0.3, 0, 0.01]);
+    add(new THREE.TorusGeometry(1.76, 0.08, 8, 48), gold, body, [0,-1.2,0]).rotation.x = Math.PI/2;
+    add(new THREE.CylinderGeometry(0.34, 0.46, 0.9, 24), skin, root, [0,-1.2,0], null, 1.06);
+
+    // head
+    var head = new THREE.Group(); root.add(head);
+    add(new THREE.SphereGeometry(1.1, 40, 32), skin, head, [0,0,0], [1,1.08,1], 1.035);
+    [-1,1].forEach(function(s){ add(new THREE.SphereGeometry(0.2, 16, 12), skinD, head, [s*1.07, 0, -0.05], [0.5,1,0.8], 1.1); });
+
+    // hair curls
+    var n = 110, golden = Math.PI*(3-Math.sqrt(5)), seed = 3;
+    function rnd(){ seed = (seed*9301+49297)%233280; return seed/233280; }
+    for (var i=0;i<n;i++){
+      var y = 1 - (i/(n-1))*2, r = Math.sqrt(1-y*y), th = golden*i;
+      var x = Math.cos(th)*r, z = Math.sin(th)*r;
+      var keep = (y > 0.42) || (z < -0.15 && y > -0.55) || (Math.abs(x) > 0.82 && y > 0.05 && z < 0.35);
+      if (z > 0.5 && y < 0.62) keep = false;
+      if (!keep) continue;
+      var rad = 1.13 + rnd()*0.06, cr = 0.24 + rnd()*0.13;
+      add(new THREE.SphereGeometry(cr, 14, 10), hair, head, [x*rad, y*rad*1.08, z*rad], null, 1.09);
+    }
+    add(new THREE.SphereGeometry(0.52, 20, 16), hair, head, [0, 0.55, -1.0], null, 1.06);
+    [-1,1].forEach(function(s){
+      for (var k=0;k<6;k++){
+        var cr = 0.27 - k*0.012;
+        add(new THREE.SphereGeometry(cr, 14, 10), hair, head,
+          [s*(0.92 + Math.sin(k*1.7)*0.1), -0.25 - k*0.3, -0.45 + Math.cos(k*1.3)*0.12], null, 1.09);
+      }
+    });
+
+    // face
+    add(new THREE.SphereGeometry(0.13, 16, 12), skinD, head, [0,-0.14,1.12], [1,1.1,1], 1.1);
+    add(new THREE.SphereGeometry(0.05, 12, 8), flat(0xB0142A), head, [0,0.37,1.02]);
+    [-1,1].forEach(function(s){
+      var c = add(new THREE.SphereGeometry(0.17, 16, 12), cheekMat, head, [s*0.6,-0.22,0.88], [1,0.7,0.3]);
+      c.rotation.y = s*0.6;
+    });
+
+    var eyes = [], lids = [], pupils = [], brows = [];
+    var irisGeo = new THREE.CircleGeometry(0.105, 24), hiGeo = new THREE.CircleGeometry(0.032, 12);
+    disposables.push(irisGeo, hiGeo);
+    [-1,1].forEach(function(s){
+      var eg = new THREE.Group(); eg.position.set(s*0.38, 0.12, 0.93); eg.rotation.y = s*0.28;
+      head.add(eg);
+      var inner = new THREE.Group(); inner.scale.set(1,1,0.55); eg.add(inner);
+      add(new THREE.SphereGeometry(0.24, 24, 18), white, inner, null, null, 1.1);
+      var pg = new THREE.Group(); inner.add(pg);
+      var iris = new THREE.Mesh(irisGeo, pupilMat); pg.add(iris);
+      var hi = new THREE.Mesh(hiGeo, white); hi.position.set(0.035,0.04,0.002); pg.add(hi);
+      var lid = add(new THREE.SphereGeometry(0.255, 24, 12, 0, Math.PI*2, 0, Math.PI/2), skin, inner, null, null, 1.04);
+      eyes.push(eg); lids.push(lid); pupils.push(pg);
+      var b = add(new THREE.BoxGeometry(0.44, 0.08, 0.08), toon(0x8E8A84), head, [s*0.38, 0.47, 0.96], null, 1.15);
+      brows.push(b);
+    });
+
+    // mouths
+    var mouth = new THREE.Group(); mouth.position.set(0,-0.53,1.0); mouth.rotation.x = 0.5; head.add(mouth);
+    var mouths = {};
+    mouths.smile = add(new THREE.TorusGeometry(0.2,0.04,8,24,Math.PI), lip, mouth); mouths.smile.rotation.z = Math.PI;
+    mouths.grin = new THREE.Group(); mouth.add(mouths.grin);
+    add(new THREE.CircleGeometry(0.28,32,Math.PI,Math.PI), dark, mouths.grin);
+    add(new THREE.PlaneGeometry(0.46,0.09), white, mouths.grin, [0,-0.05,0.004]);
+    mouths.open = new THREE.Group(); mouth.add(mouths.open);
+    add(new THREE.SphereGeometry(0.2,20,16), dark, mouths.open, [0,-0.05,0], [1,1.3,0.35], 1.08);
+    add(new THREE.SphereGeometry(0.1,12,10), tongue, mouths.open, [0,-0.18,0.04], [1.3,0.6,0.3]);
+    mouths.pout = add(new THREE.TorusGeometry(0.075,0.045,10,20), lip, mouth, [0,-0.02,0.02]);
+    mouths.smirk = add(new THREE.TorusGeometry(0.17,0.038,8,20,Math.PI*0.75), lip, mouth, [0.1,0.02,0]); mouths.smirk.rotation.z = Math.PI+0.45;
+    mouths.frown = add(new THREE.TorusGeometry(0.15,0.038,8,20,Math.PI), lip, mouth, [0,-0.12,0]);
+
+    // state
+    var target = EXPR.smug, cur = {lid:0, eye:1, b0:0, b1:0, by:0};
+    function applyMouth(name){ Object.keys(mouths).forEach(function(k){ mouths[k].visible = (k===name); }); }
+    applyMouth("smug" && "smile");
+    api.current.setExpr = function(name){
+      target = EXPR[name] || EXPR.smug;
+      applyMouth(target.mouth);
+      pupilMat.color.setHex(target.pupil);
+    };
+    var munchT = 0;
+    api.current.munch = function(){ munchT = 1; };
+
+    // pointer
+    var nx = 0, ny = 0, sx = 0, sy = 0;
+    function onMove(e){
+      var p = e.touches ? e.touches[0] : e;
+      if (!p) return;
+      var rect = el.getBoundingClientRect();
+      var cx = rect.left + rect.width/2, cy = rect.top + rect.height*0.35;
+      nx = Math.max(-1, Math.min(1, (p.clientX - cx)/(window.innerWidth*0.5)));
+      ny = Math.max(-1, Math.min(1, (p.clientY - cy)/(window.innerHeight*0.5)));
+    }
+    window.addEventListener("mousemove", onMove, {passive:true});
+    window.addEventListener("touchmove", onMove, {passive:true});
+
+    function resize(){
+      var w = el.clientWidth, hgt = el.clientHeight;
+      if (!w || !hgt) return;
+      renderer.setSize(w, hgt, false);
+      camera.aspect = w/hgt;
+      camera.fov = w/hgt < 0.8 ? 40 : 33;
+      camera.updateProjectionMatrix();
+    }
+    var ro = new ResizeObserver(resize); ro.observe(el); resize();
+
+    var visible = true;
+    var io = new IntersectionObserver(function(en){ visible = en[0].isIntersecting; }, {threshold:0});
+    io.observe(el);
+
+    var clock = new THREE.Clock(), nextBlink = 2.5, blinkT = 0, raf;
+    function lerp(a,b,t){ return a + (b-a)*t; }
+    function tick(){
+      raf = requestAnimationFrame(tick);
+      if (!visible) { clock.getDelta(); return; }
+      var dt = Math.min(clock.getDelta(), 0.05), t = clock.elapsedTime;
+      var k = 1 - Math.pow(0.001, dt);
+      sx = lerp(sx, nx, k*0.9); sy = lerp(sy, ny, k*0.9);
+      head.rotation.y = sx*0.6; head.rotation.x = sy*0.32; head.rotation.z = -sx*0.06;
+      root.rotation.y = sx*0.22;
+      body.rotation.y = -sx*0.05;
+      var bob = reduceMotion ? 0 : Math.sin(t*1.6)*0.05;
+      munchT = Math.max(0, munchT - dt*2.2);
+      var hop = Math.sin(munchT*Math.PI);
+      root.position.y = 0.45 + bob + hop*0.35;
+      head.scale.set(1 + hop*0.06, 1 - hop*0.05, 1);
+
+      cur.lid = lerp(cur.lid, target.lid, k); cur.eye = lerp(cur.eye, target.eye, k);
+      cur.b0 = lerp(cur.b0, target.brow[0], k); cur.b1 = lerp(cur.b1, target.brow[1], k);
+      cur.by = lerp(cur.by, target.browY, k);
+
+      if (!reduceMotion){
+        nextBlink -= dt;
+        if (nextBlink <= 0){ blinkT = 0.16; nextBlink = 2 + Math.random()*3.5; }
+      }
+      var lidNow = cur.lid;
+      if (blinkT > 0){ blinkT -= dt; lidNow = 1.6; }
+
+      var px = Math.max(-0.085, Math.min(0.085, sx*0.1)), py = Math.max(-0.07, Math.min(0.07, -sy*0.09));
+      for (var j=0;j<2;j++){
+        lids[j].rotation.x = lidNow;
+        eyes[j].scale.set(cur.eye, cur.eye, 1);
+        pupils[j].position.set(px, py, Math.sqrt(Math.max(0, 0.0576 - px*px - py*py)) + 0.004);
+        var sc = target === EXPR.shocked || target === EXPR.worried ? 0.75 : 1;
+        pupils[j].scale.setScalar(lerp(pupils[j].scale.x, sc, k));
+      }
+      brows[0].rotation.z = cur.b0; brows[1].rotation.z = cur.b1;
+      brows[0].position.y = brows[1].position.y = 0.47 + cur.by;
+      renderer.render(scene, camera);
+    }
+    tick();
+
+    return function(){
+      cancelAnimationFrame(raf);
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("touchmove", onMove);
+      ro.disconnect(); io.disconnect();
+      disposables.forEach(function(g){ g.dispose(); });
+      renderer.dispose();
+      if (renderer.domElement.parentNode) renderer.domElement.parentNode.removeChild(renderer.domElement);
+    };
+  }, []);
+
+  useEffect(function(){ if (api.current.setExpr) api.current.setExpr(props.expression); }, [props.expression]);
+  useEffect(function(){ if (props.munch && api.current.munch) api.current.munch(); }, [props.munch]);
+
+  return h("div", {ref:mount, className:"stage", onClick:props.onPoke, role:"img",
+    "aria-label":"3D cartoon of MDR Mausi, a grey-haired auntie in a red saree who follows your cursor"},
+    failed ? h("div",{className:"nogl"},"Mausi needs WebGL to appear in 3D. Try another browser.") : null);
+}
+
+/* ================= 2D ART ================= */
+var INK = "#2B1B17";
+var ART = {
+  chai: '<svg viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg"><rect x="22" y="92" width="76" height="48" rx="22" fill="#F2B632" stroke="'+INK+'" stroke-width="4"/><path d="M52 92 L60 108 L68 92" fill="none" stroke="'+INK+'" stroke-width="3"/><circle cx="60" cy="58" r="34" fill="#9C5A36" stroke="'+INK+'" stroke-width="4"/><path d="M28 46 Q60 18 92 46 L90 36 Q60 8 30 36Z" fill="#fff" stroke="'+INK+'" stroke-width="3"/><circle cx="47" cy="56" r="5" fill="'+INK+'"/><circle cx="73" cy="56" r="5" fill="'+INK+'"/><path d="M36 72 Q48 62 60 71 Q72 62 84 72 Q72 82 60 75 Q48 82 36 72Z" fill="'+INK+'"/><path d="M51 84 Q60 90 69 84" fill="none" stroke="'+INK+'" stroke-width="3" stroke-linecap="round"/><rect x="86" y="98" width="18" height="22" rx="4" fill="#fff" stroke="'+INK+'" stroke-width="3"/><path d="M104 104 q8 4 0 10" fill="none" stroke="'+INK+'" stroke-width="3"/><path d="M92 94 q-3 -6 0 -10 M98 94 q-3 -6 0 -10" fill="none" stroke="'+INK+'" stroke-width="2"/></svg>',
+  kirana: '<svg viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="92" width="80" height="48" rx="22" fill="#3FA66B" stroke="'+INK+'" stroke-width="4"/><circle cx="50" cy="112" r="3" fill="'+INK+'"/><circle cx="50" cy="124" r="3" fill="'+INK+'"/><circle cx="60" cy="58" r="34" fill="#C98555" stroke="'+INK+'" stroke-width="4"/><ellipse cx="28" cy="52" rx="8" ry="12" fill="#E6E2DC" stroke="'+INK+'" stroke-width="3"/><ellipse cx="92" cy="52" rx="8" ry="12" fill="#E6E2DC" stroke="'+INK+'" stroke-width="3"/><rect x="90" y="30" width="6" height="26" rx="2" fill="#F2B632" stroke="'+INK+'" stroke-width="2" transform="rotate(20 93 43)"/><circle cx="47" cy="58" r="10" fill="#fff" stroke="'+INK+'" stroke-width="3"/><circle cx="73" cy="58" r="10" fill="#fff" stroke="'+INK+'" stroke-width="3"/><path d="M57 58 H63" stroke="'+INK+'" stroke-width="3"/><circle cx="48" cy="59" r="4" fill="'+INK+'"/><circle cx="72" cy="59" r="4" fill="'+INK+'"/><path d="M46 78 Q60 92 74 78" fill="#fff" stroke="'+INK+'" stroke-width="3"/><path d="M42 40 q6 -4 12 0 M66 40 q6 -4 12 0" fill="none" stroke="'+INK+'" stroke-width="3" stroke-linecap="round"/></svg>',
+  gadget: '<svg viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg"><rect x="22" y="92" width="76" height="48" rx="22" fill="#4A8FE0" stroke="'+INK+'" stroke-width="4"/><path d="M48 92 L60 104 L72 92" fill="#fff" stroke="'+INK+'" stroke-width="3"/><circle cx="60" cy="60" r="32" fill="#7A4A2C" stroke="'+INK+'" stroke-width="4"/><path d="M28 50 L34 24 L44 38 L52 16 L60 34 L70 14 L76 36 L88 22 L92 50 Q60 36 28 50Z" fill="'+INK+'"/><path d="M24 62 Q24 18 60 18 Q96 18 96 62" fill="none" stroke="#E0454F" stroke-width="6"/><rect x="16" y="54" width="14" height="22" rx="6" fill="#E0454F" stroke="'+INK+'" stroke-width="3"/><rect x="90" y="54" width="14" height="22" rx="6" fill="#E0454F" stroke="'+INK+'" stroke-width="3"/><circle cx="48" cy="60" r="5" fill="'+INK+'"/><circle cx="72" cy="60" r="5" fill="'+INK+'"/><path d="M44 74 Q60 94 76 74Z" fill="#fff" stroke="'+INK+'" stroke-width="3" stroke-linejoin="round"/></svg>',
+  bank: '<svg viewBox="0 0 130 150" xmlns="http://www.w3.org/2000/svg"><path d="M10 52 L65 14 L120 52Z" fill="#9CC9F0" stroke="'+INK+'" stroke-width="4" stroke-linejoin="round"/><circle cx="65" cy="38" r="8" fill="#F2B632" stroke="'+INK+'" stroke-width="3"/><rect x="14" y="52" width="102" height="12" fill="#FFF8F0" stroke="'+INK+'" stroke-width="4"/><g fill="#FFF8F0" stroke="'+INK+'" stroke-width="4"><rect x="22" y="64" width="14" height="52"/><rect x="48" y="64" width="14" height="52"/><rect x="74" y="64" width="14" height="52"/><rect x="96" y="64" width="14" height="52"/></g><rect x="8" y="116" width="114" height="16" fill="#8FD6B5" stroke="'+INK+'" stroke-width="4"/><text x="65" y="145" text-anchor="middle" font-family="Baloo 2, sans-serif" font-weight="800" font-size="13" fill="currentColor">NEFT · RTGS · IMPS</text></svg>'
+};
+function Art(p){ return h("span",{"aria-hidden":"true",style:{display:"block",color:"var(--ink)"},dangerouslySetInnerHTML:{__html:ART[p.k]}}); }
+
+function MiniMausi(p){
+  var m = p.mood;
+  var eyes = m === "greedy"
+    ? '<path d="M38 60 q8 -8 16 0" stroke="'+INK+'" stroke-width="4" fill="none"/><path d="M66 60 q8 -8 16 0" stroke="'+INK+'" stroke-width="4" fill="none"/><text x="46" y="70" font-size="12" text-anchor="middle" font-weight="800" fill="#B77E00">₹</text><text x="74" y="70" font-size="12" text-anchor="middle" font-weight="800" fill="#B77E00">₹</text>'
+    : m === "shocked"
+    ? '<circle cx="46" cy="60" r="11" fill="#fff" stroke="'+INK+'" stroke-width="3"/><circle cx="74" cy="60" r="11" fill="#fff" stroke="'+INK+'" stroke-width="3"/><circle cx="46" cy="60" r="3.5" fill="'+INK+'"/><circle cx="74" cy="60" r="3.5" fill="'+INK+'"/>'
+    : '<ellipse cx="46" cy="61" rx="8" ry="6" fill="#fff" stroke="'+INK+'" stroke-width="3"/><ellipse cx="74" cy="61" rx="8" ry="6" fill="#fff" stroke="'+INK+'" stroke-width="3"/><circle cx="48" cy="62" r="3" fill="'+INK+'"/><circle cx="72" cy="62" r="3" fill="'+INK+'"/><path d="M36 54 H56" stroke="#B8693F" stroke-width="5"/><path d="M64 54 H84" stroke="#B8693F" stroke-width="5"/>';
+  var brows = m === "shocked" ? '<path d="M36 42 q10 -6 18 0 M66 42 q10 -6 18 0" stroke="#8E8A84" stroke-width="4" fill="none" stroke-linecap="round"/>'
+    : m === "greedy" ? '<path d="M36 46 L54 50 M84 46 L66 50" stroke="#8E8A84" stroke-width="4" stroke-linecap="round"/>'
+    : '<path d="M36 48 L54 46 M66 42 L84 48" stroke="#8E8A84" stroke-width="4" stroke-linecap="round"/>';
+  var mouth = m === "greedy" ? '<path d="M44 82 Q60 100 76 82Z" fill="#4A1519" stroke="'+INK+'" stroke-width="3"/><rect x="47" y="82" width="26" height="5" fill="#fff"/>'
+    : m === "shocked" ? '<ellipse cx="60" cy="88" rx="9" ry="12" fill="#4A1519" stroke="'+INK+'" stroke-width="3"/>'
+    : '<circle cx="62" cy="86" r="5" fill="none" stroke="#8E3434" stroke-width="4"/>';
+  var curls = "";
+  [[30,34],[42,24],[56,20],[70,21],[84,26],[94,38],[24,48],[98,52],[22,66],[100,70],[26,84],[96,86]].forEach(function(c){
+    curls += '<circle cx="'+c[0]+'" cy="'+c[1]+'" r="11" fill="#DAD6CF" stroke="'+INK+'" stroke-width="3"/>';
+  });
+  var svg = '<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><path d="M26 120 Q60 96 94 120Z" fill="#C8283B" stroke="'+INK+'" stroke-width="3"/>'+curls+
+    '<ellipse cx="60" cy="64" rx="34" ry="38" fill="#B8693F" stroke="'+INK+'" stroke-width="4"/><circle cx="60" cy="44" r="3" fill="#B0142A"/>'+
+    '<circle cx="36" cy="78" r="6" fill="#F08A7E" opacity=".6"/><circle cx="84" cy="78" r="6" fill="#F08A7E" opacity=".6"/>'+
+    '<path d="M57 70 q3 6 6 0" stroke="'+INK+'" stroke-width="2.5" fill="none"/>'+eyes+brows+mouth+'</svg>';
+  return h("span",{role:"img","aria-label":"Mausi looks "+m,dangerouslySetInnerHTML:{__html:svg}});
+}
+
+/* ================= COINS ================= */
+function flyCoins(fromEl, toEl, label, count, onLand){
+  if (!fromEl || !toEl){ onLand && onLand(); return; }
+  var a = fromEl.getBoundingClientRect(), b = toEl.getBoundingClientRect();
+  var x0 = a.left + a.width/2, y0 = a.top + a.height/2;
+  var x1 = b.left + b.width/2, y1 = b.top + b.height*0.42;
+  if (reduceMotion){ onLand && onLand(); return; }
+  var landed = false;
+  for (var i=0;i<count;i++){
+    (function(i){
+      var c = document.createElement("div");
+      c.className = "coin" + (label.length > 2 ? " note" : "");
+      c.textContent = label;
+      document.body.appendChild(c);
+      var mx = (x0+x1)/2 + (i-1)*30, my = Math.min(y0,y1) - 140 - i*20;
+      var anim = c.animate([
+        {transform:"translate("+x0+"px,"+y0+"px) scale(.6) rotate(0deg)"},
+        {transform:"translate("+mx+"px,"+my+"px) scale(1.15) rotate(200deg)", offset:0.5},
+        {transform:"translate("+x1+"px,"+y1+"px) scale(.5) rotate(400deg)", opacity:.2}
+      ], {duration:850, delay:i*120, easing:"cubic-bezier(.4,.1,.6,1)", fill:"both"});
+      anim.onfinish = function(){
+        c.remove();
+        if (!landed){ landed = true; onLand && onLand(); }
+      };
+    })(i);
+  }
+}
+
+/* ================= APP ================= */
+var MERCHANTS = [
+  { id:"chai",   name:"Chotu Chai Stall",  amount:40,     art:"chai" },
+  { id:"kirana", name:"Gupta Kirana",      amount:3500,   art:"kirana" },
+  { id:"gadget", name:"Metro Electronics", amount:120000, art:"gadget" }
+];
+
+function App(){
+  var _e = useState("smug"), expr = _e[0], setExpr = _e[1];
+  var _m = useState(0), munch = _m[0], setMunch = _m[1];
+  var _b = useState({text:"Namaste! Anything above ₹2,000? Mausi takes 0.4%.", k:0}), bubble = _b[0], setBubble = _b[1];
+  var _f = useState(0), fees = _f[0], setFees = _f[1];
+  var _sv = useState(0), saved = _sv[0], setSaved = _sv[1];
+  var _bn = useState(""), bouncing = _bn[0], setBouncing = _bn[1];
+  var _vg = useState(0), vaultGlow = _vg[0], setVaultGlow = _vg[1];
+  var stageRef = useRef(null), vaultRef = useRef(null);
+  var exprTimer = useRef(null);
+
+  function say(text, mood, hold){
+    setBubble({text:text, k:Date.now()});
+    setExpr(mood);
+    clearTimeout(exprTimer.current);
+    exprTimer.current = setTimeout(function(){ setExpr("smug"); }, hold || 2600);
+  }
+  function poke(){
+    var i = (EXPR_ORDER.indexOf(expr)+1) % EXPR_ORDER.length;
+    var lines = {smug:"Hmm? I'm watching every rupee.",greedy:"Is that a big payment I smell?",shocked:"Don't poke Mausi!",pout:"Hmph. No payments today?",sly:"I see you, beta.",worried:"Somebody said bank transfer?!"};
+    say(lines[EXPR_ORDER[i]], EXPR_ORDER[i], 2200);
+  }
+  function pay(m, method, e){
+    var btn = e.currentTarget;
+    setBouncing(m.id); setTimeout(function(){ setBouncing(""); }, 460);
+    var f = feeOf(m.amount);
+    if (method === "upi"){
+      flyCoins(btn, stageRef.current, "₹", 3, function(){
+        setMunch(function(x){ return x+1; });
+        setFees(function(x){ return x+f; });
+        say(lineFor(m.amount), moodFor(m.amount));
+      });
+    } else {
+      flyCoins(btn, vaultRef.current, "₹", 3, function(){
+        setVaultGlow(function(x){ return x+1; });
+        setSaved(function(x){ return x+f; });
+        say(f ? "Bank transfer?! There goes my " + inr(f) + "!" : "Bank transfer for ₹" + m.amount + "? I wasn't getting anything anyway.", "worried", 2800);
+      });
+    }
+  }
+
+  return h(React.Fragment, null,
+    h("div",{className:"wrap"},
+      h("header",{className:"top"},
+        h("div",{className:"logo"}, h("i",null,"₹"), "Bachat"),
+        h("button",{className:"btn plain",onClick:function(){
+          var r = document.documentElement;
+          var dark = r.dataset.theme ? r.dataset.theme === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+          r.dataset.theme = dark ? "light" : "dark";
+        }}, "Switch theme")
+      ),
+
+      h("main",null,
+        h("div",{className:"hero"},
+          h("div",null,
+            h("h1",null,"Meet", h("span",{className:"l2"},"MDR Mausi")),
+            h("p",null,"From 15 October she takes 0.4% of every UPI payment above ₹2,000, up to ₹300. Feed her, dodge her, or outsmart her the legal way."),
+            h("div",{className:"score","aria-live":"polite"},
+              h("div",{className:"chip fee"}, h("b",null,inr(fees)), h("span",null,"Mausi collected")),
+              h("div",{className:"chip save"}, h("b",null,inr(saved)), h("span",null,"merchants kept"))
+            ),
+            h("button",{className:"btn red",onClick:function(){ document.getElementById("calc").scrollIntoView({behavior:reduceMotion?"auto":"smooth"}); }},"Check your fee")
+          ),
+          h("div",{className:"stageWrap",ref:stageRef},
+            h("div",{className:"halo"}),
+            h(MausiScene,{expression:expr, munch:munch, onPoke:poke}),
+            h("div",{className:"bubble",key:bubble.k,"aria-live":"polite"}, bubble.text),
+            h("div",{className:"hint"},"Move your cursor. Tap her.")
+          )
+        ),
+
+        h("div",{className:"street"},
+          h("h2",null,"Merchant street"),
+          h("p",{className:"sub"},"Each shop just got paid. Send it by UPI and Mausi takes her cut. Send it by bank transfer and she gets nothing."),
+          h("div",{className:"shops"},
+            MERCHANTS.map(function(m){
+              return h("div",{key:m.id,className:"shop"+(bouncing===m.id?" bounce":"")},
+                h(Art,{k:m.art}),
+                h("h3",null,m.name),
+                h("div",{className:"amt"}, inr(m.amount), " · fee ", feeOf(m.amount) ? inr(feeOf(m.amount)) : "free"),
+                h("div",{className:"btns"},
+                  h("button",{className:"btn",onClick:function(e){ pay(m,"upi",e); }},"Pay by UPI"),
+                  h("button",{className:"btn mint",onClick:function(e){ pay(m,"bank",e); }},"Bank transfer")
+                )
+              );
+            }),
+            h("div",{className:"vault"+(vaultGlow%2?" glow":""),ref:vaultRef,key:"vault-"+vaultGlow},
+              h(Art,{k:"bank"}),
+              h("b",null,"Mausi-free zone")
+            )
+          )
+        ),
+
+        h(Calculator,{onMood:function(a){ setExpr(moodFor(a)); clearTimeout(exprTimer.current); exprTimer.current = setTimeout(function(){ setExpr("smug"); }, 2500); }}),
+        h(Trick,{onCaught:function(){ say("Three ₹1,999s in two minutes? Mausi sees everything.", "sly", 3500); }, onBank:function(){ setSaved(function(x){ return x+24; }); }}),
+        h(Help),
+        h(Cta)
+      ),
+
+      h("footer",null,
+        h("p",null,"MDR Mausi is a made-up cartoon, not any real payment app. Fee rules are based on news reports from 15–16 September 2026 (0.4% above ₹2,000, capped at ₹300, from 15 October 2026; special rates for some sectors; small merchants up to ₹1 lakh a month exempt). Check the NPCI circular and your bank before making decisions."),
+        h("p",null,"Bachat · helping merchants keep more of what they earn")
+      )
+    )
+  );
+}
+
+function Calculator(p){
+  var _a = useState(5000), amt = _a[0], setAmt = _a[1];
+  var t = useRef(null);
+  function set(v){
+    v = Math.max(0, Math.min(10000000, Math.round(Number(v)||0)));
+    setAmt(v);
+    clearTimeout(t.current);
+    t.current = setTimeout(function(){ p.onMood(v); }, 250);
+  }
+  var f = feeOf(amt), mood = moodFor(amt);
+  var say = amt <= 2000 ? "₹2,000 or less? Free. Mausi sulks."
+    : amt >= 75000 ? "Capped! Mausi can't take more than ₹300."
+    : "Mausi's cut: 0.4%. She's delighted.";
+  return h("section",{className:"block",id:"calc"},
+    h("span",{className:"kicker"},"Fee calculator"),
+    h("h2",null,"How much will Mausi take?"),
+    h("p",{className:"lede"},"Slide the payment. The fee comes out of what the shop receives, not from the customer."),
+    h("div",{className:"calc"},
+      h("div",null,
+        h("label",{htmlFor:"amt",style:{fontWeight:800}},"Payment amount"),
+        h("div",{className:"bigamt"}, inr(amt)),
+        h("input",{id:"amt",type:"range",min:0,max:150000,step:100,value:Math.min(amt,150000),onChange:function(e){ set(e.target.value); },"aria-label":"Payment amount slider"}),
+        h("div",{style:{display:"flex",gap:10,alignItems:"center",flexWrap:"wrap"}},
+          h("span",{style:{fontWeight:700}},"Or type it: ₹"),
+          h("input",{className:"numin",type:"number",min:0,value:amt,onChange:function(e){ set(e.target.value); },"aria-label":"Payment amount in rupees"})
+        ),
+        h("div",{className:"presets"},
+          [["Chai",30],["₹1,999",1999],["₹2,001",2001],["Phone",15000],["Sofa",75000],["Car deposit",200000]].map(function(x){
+            return h("button",{key:x[0],className:"btn plain",onClick:function(){ set(x[1]); }},x[0]);
+          })
+        ),
+        h("div",{className:"receipt"},
+          h("span",null,"Customer pays"), h("span",null,inr(amt)),
+          h("span",null,"Mausi's MDR"), h("span",{style:{color:"var(--saree)"}},"− "+inr(f)),
+          h("span",{className:"t"},"Shop keeps"), h("span",{className:"t"},inr(amt-f))
+        )
+      ),
+      h("div",{className:"reaction"},
+        h(MiniMausi,{mood:mood}),
+        h("div",{className:"say","aria-live":"polite"}, say)
+      )
+    )
+  );
+}
+
+function Trick(p){
+  var _s = useState(0), step = _s[0], setStep = _s[1];
+  var timers = useRef([]);
+  function run(){
+    timers.current.forEach(clearTimeout);
+    setStep(1);
+    timers.current = [
+      setTimeout(function(){ setStep(2); }, 450),
+      setTimeout(function(){ setStep(3); }, 900),
+      setTimeout(function(){ setStep(4); p.onCaught(); }, 1500)
+    ];
+  }
+  useEffect(function(){ return function(){ timers.current.forEach(clearTimeout); }; }, []);
+  var slips = [];
+  for (var i=1;i<=Math.min(step,3);i++) slips.push(h("span",{className:"slip",key:i},"₹1,999 #"+i));
+  return h("section",{className:"block"},
+    h("span",{className:"kicker"},"The sneaky trick"),
+    h("h2",null,"What if I split ₹6,000 into ₹1,999s?"),
+    h("p",{className:"lede"},"Everyone's first idea. Press the button and see why it's a bad one."),
+    h("div",{className:"trick"},
+      h("div",{className:"panel"+(step===4?" alarm":""),key:"p"+(step===4?"a":"n")},
+        h("div",{className:"siren","aria-hidden":"true"}),
+        h("h3",{style:{fontSize:"1.5rem"}},"Customer pays ₹5,997 in three goes"),
+        h("div",{className:"slips"}, slips.length ? slips : h("span",{style:{color:"var(--muted)",fontWeight:700}},"No payments yet")),
+        step === 4
+          ? h("div",{className:"verdict",role:"alert"},"Caught. Banks can spot several just-under-₹2,000 payments from the same person minutes apart. They can treat it as dodging fees, and your merchant account could be flagged or frozen. Saving ₹24 isn't worth that.")
+          : null,
+        h("div",{className:"row",style:{display:"flex",gap:10,flexWrap:"wrap",marginTop:14}},
+          h("button",{className:"btn red",onClick:run,disabled:step>0&&step<4}, step===4 ? "Try again" : "Split the payment"),
+          step === 4 ? h("button",{className:"btn mint",onClick:function(){ p.onBank(); setStep(5); }},"Ask for bank transfer instead") : null
+        ),
+        step === 5 ? h("div",{className:"verdict",role:"status"},"Nice. One ₹6,000 bank transfer: no MDR, no red flags, ₹24 kept.") : null
+      ),
+      h("div",null,
+        h("h3",{style:{fontSize:"1.6rem",marginBottom:8}},"The honest ways to pay Mausi less"),
+        h("ul",{style:{margin:0,paddingLeft:22,fontWeight:600}},
+          h("li",null,"Big or repeat customers: ask them to pay by NEFT, RTGS or IMPS."),
+          h("li",null,"Small shop under ₹1 lakh a month on UPI: ask your bank about the small merchant exemption."),
+          h("li",null,"Fuel, insurance, telecom or railways: check you're on the ₹5 flat rate."),
+          h("li",null,"Paying a lot in fees? Compare payment providers and ask for a better deal.")
+        )
+      )
+    )
+  );
+}
+
+var HELP_ART = [
+  '<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="16" width="80" height="92" rx="8" fill="#FFF8F0" stroke="'+INK+'" stroke-width="4"/><path d="M34 40 H86 M34 56 H78 M34 72 H70" stroke="'+INK+'" stroke-width="4" stroke-linecap="round"/><circle cx="84" cy="82" r="20" fill="#F2B632" stroke="'+INK+'" stroke-width="4"/><text x="84" y="90" text-anchor="middle" font-size="22" font-weight="800" fill="'+INK+'">₹</text></svg>',
+  '<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><circle cx="44" cy="46" r="18" fill="#C98555" stroke="'+INK+'" stroke-width="4"/><path d="M18 100 Q44 60 70 100Z" fill="#4A8FE0" stroke="'+INK+'" stroke-width="4"/><path d="M72 48 H104 M92 36 L104 48 L92 60" fill="none" stroke="'+INK+'" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect x="78" y="70" width="30" height="30" rx="4" fill="#9CC9F0" stroke="'+INK+'" stroke-width="4"/></svg>',
+  '<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><rect x="18" y="14" width="68" height="92" rx="8" fill="#FFF8F0" stroke="'+INK+'" stroke-width="4"/><path d="M30 34 H74 M30 48 H62" stroke="'+INK+'" stroke-width="4" stroke-linecap="round"/><rect x="30" y="62" width="44" height="14" rx="4" fill="#8FD6B5" stroke="'+INK+'" stroke-width="3"/><g transform="translate(70 62)"><rect width="36" height="36" fill="#fff" stroke="'+INK+'" stroke-width="3"/><rect x="6" y="6" width="9" height="9" fill="'+INK+'"/><rect x="21" y="6" width="9" height="9" fill="'+INK+'"/><rect x="6" y="21" width="9" height="9" fill="'+INK+'"/><rect x="21" y="21" width="5" height="5" fill="'+INK+'"/></g></svg>'
+];
+function Help(){
+  var items = [
+    ["See what Mausi takes","Upload your settlement statement. Bachat shows your monthly and yearly MDR, and whether you're exempt."],
+    ["Find who can pay by bank","We spot repeat customers making big UPI payments and show how much you'd keep if they switched."],
+    ["Send smarter invoices","Big invoices show bank details first, with a UPI QR as backup. Plus alerts if payments look split."]
+  ];
+  return h("section",{className:"block"},
+    h("span",{className:"kicker"},"How Bachat helps"),
+    h("h2",null,"Keep Mausi's hands off your margin"),
+    h("p",{className:"lede"},"Three steps, all above board."),
+    h("div",{className:"comics"},
+      items.map(function(it,i){
+        return h("div",{className:"comic",key:i},
+          h("div",{className:"art","aria-hidden":"true",dangerouslySetInnerHTML:{__html:HELP_ART[i]}}),
+          h("div",{className:"txt"}, h("span",{className:"num"},String(i+1)), h("h3",null,it[0]), h("p",null,it[1]))
+        );
+      })
+    )
+  );
+}
+
+var WAITLIST_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdoDEq4SOSAJb_U6ZBh-PwkbAhDOOCL9pcLRRuJZWhTu1kjRA/formResponse";
+var WAITLIST_ENTRY_ID = "entry.603673698";
+
+function Cta(){
+  var _v = useState(""), v = _v[0], setV = _v[1];
+  var _d = useState(false), done = _d[0], setDone = _d[1];
+  var _err = useState(""), err = _err[0], setErr = _err[1];
+  var _s = useState(false), sending = _s[0], setSending = _s[1];
+  function submit(e){
+    e.preventDefault();
+    var ok = /^[6-9]\d{9}$/.test(v.replace(/\D/g,"").slice(-10)) || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    if (!ok){ setErr("Enter a 10-digit mobile number or an email address."); return; }
+    setErr(""); setSending(true);
+    var body = new URLSearchParams();
+    body.append(WAITLIST_ENTRY_ID, v);
+    fetch(WAITLIST_FORM_URL, { method:"POST", mode:"no-cors", headers:{"Content-Type":"application/x-www-form-urlencoded"}, body:body.toString() })
+      .catch(function(){})
+      .finally(function(){ setSending(false); setDone(true); });
+  }
+  return h("section",{className:"cta"},
+    done
+      ? h("div",{className:"thanks",role:"status"},"You're on the list. Mausi is not happy about it.")
+      : h(React.Fragment,null,
+          h("h2",null,"Get Bachat before Mausi gets you"),
+          h("p",null,"Join the early list. We'll message you when the fee tracker is ready."),
+          h("form",{onSubmit:submit,noValidate:true},
+            h("input",{value:v,onChange:function(e){ setV(e.target.value); },placeholder:"Mobile number or email","aria-label":"Mobile number or email",disabled:sending}),
+            h("button",{className:"btn",type:"submit",disabled:sending}, sending ? "Joining..." : "Join the list")
+          ),
+          err ? h("p",{role:"alert",style:{margin:"10px 0 0",fontWeight:800}},err) : null
+        )
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(h(App));
+})();
+</script>
+</body>
+</html>
