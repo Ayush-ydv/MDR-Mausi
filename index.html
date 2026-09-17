@@ -13,12 +13,6 @@
   --saree:#C8283B; --haldi:#F2B632; --mint:#8FD6B5; --sky:#9CC9F0; --pink:#F4A6A0;
   --shadow:4px 4px 0 var(--ink);
 }
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#2A1E1B; --bg2:#342622; --card:#3E2E29; --ink:#FBEBDD; --muted:#CDB6AA;
-    --saree:#EF5566; --haldi:#F5C04C; --mint:#6CC79E; --sky:#78B2E6; --pink:#E0877F;
-  }
-}
 :root[data-theme="dark"]{
   --bg:#2A1E1B; --bg2:#342622; --card:#3E2E29; --ink:#FBEBDD; --muted:#CDB6AA;
   --saree:#EF5566; --haldi:#F5C04C; --mint:#6CC79E; --sky:#78B2E6; --pink:#E0877F;
@@ -69,7 +63,6 @@ button,input{font:inherit;color:inherit}
 .chip.fee b{color:var(--saree)}
 .chip.save b{color:#1f8a57}
 :root[data-theme="dark"] .chip.save b{color:var(--mint)}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .chip.save b{color:var(--mint)}}
 .chip span{font-size:.85rem;font-weight:700;color:var(--muted)}
 
 /* street */
@@ -538,8 +531,7 @@ function App(){
         h("div",{className:"logo"}, h("i",null,"₹"), "Bachat"),
         h("button",{className:"btn plain",onClick:function(){
           var r = document.documentElement;
-          var dark = r.dataset.theme ? r.dataset.theme === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
-          r.dataset.theme = dark ? "light" : "dark";
+          r.dataset.theme = r.dataset.theme === "dark" ? "light" : "dark";
         }}, "Switch theme")
       ),
 
